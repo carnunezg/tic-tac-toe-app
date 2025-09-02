@@ -21,7 +21,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   padding: 10px;
 }
 
@@ -240,7 +240,7 @@
   font-weight: bold;
   -webkit-text-stroke: 1px #3498db;
   text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
-  transform: scale(1.4);
+  transform: scale(1.2);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -249,7 +249,7 @@
   font-weight: bold;
   -webkit-text-stroke: 1px #e74c3c;
   text-shadow: 0 0 10px #e74c3c, 0 0 20px #e74c3c;
-  transform: scale(1.4);
+  transform: scale(1.2);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -269,7 +269,7 @@
 }
 
 .player {
-  font-size: 40px;
+  font-size: 30px;
   color: #fff;
   margin: 0px;
 }
@@ -340,7 +340,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
 }
 
 .title-x {
@@ -375,6 +375,7 @@
 
   .button-main {
     flex-direction: column;
+    gap: 20px;
   }
 
   .card,
@@ -416,7 +417,7 @@
   }
 
   .score-board {
-    gap: 15px;
+    gap: 40px;
   }
 
   .button-game {
@@ -439,6 +440,7 @@
 
   .button-main {
     flex-direction: column;
+    gap: 20px;
   }
 
   .card,

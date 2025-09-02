@@ -59,10 +59,6 @@ export const computerMove = ({
       const win = checkWinner(newBoards);
       if (win) {
         setWinner(win);
-        setResult((prevResult) => ({
-          ...prevResult,
-          [win]: prevResult[win] + 1,
-        }));
       } else if (newBoards.every((c) => c !== "")) {
         setWinner("Empate");
         setResult((prevResult) => ({
@@ -91,10 +87,6 @@ export const computerMove = ({
     const win = checkWinner(currentBoards);
     if (win) {
       setWinner(win);
-      setResult((prevResult) => ({
-        ...prevResult,
-        [win]: prevResult[win] + 1,
-      }));
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult((prevResult) => ({

@@ -7,6 +7,8 @@ import Menu from "./components/Menu";
 import ModoGameForm from "./components/ModoGameForm";
 import GameBoard from "./components/GameBoard";
 import WinnerModal from "./components/WinnerModal";
+import ScoreBoard from "./components/ScoreBoard";
+import ButtonsGame from "./components/ButtonsGame";
 
 const App = () => {
   const [showModal, setShowModal] = useState("menu");
@@ -47,15 +49,17 @@ const App = () => {
 
     if (ModoGame === "computer" && nextTurn === turns.O) {
       setTimeout(() => {
-        computerMove({
-          updatedBoards: newBoards,
-          setBoards,
-          setWinner,
-          setTurn,
-          winner,
-          checkWinner,
-          setResult,
-        });
+        const winCheck = checkWinner(newBoards);
+        if (!winCheck && newBoards.some((c) => c === ""))
+          computerMove({
+            updatedBoards: newBoards,
+            setBoards,
+            setWinner,
+            setTurn,
+            winner,
+            checkWinner,
+            setResult,
+          });
       }, 500);
     }
   };
@@ -127,27 +131,9 @@ const App = () => {
             winner={winner}
             click={click}
           />
+          <ScoreBoard result={result} />
 
-          <section className="score-board">
-            <p className="title-x">
-              {playerX || "X"}: {result.X}
-            </p>
-
-            <p className="title-o">
-              {playerO || "O"}: {result.O}
-            </p>
-
-            <p className="title-empate">Empates: {result.Empate}</p>
-          </section>
-
-          <section className="buttons-game">
-            <button className="button-game " onClick={backMenu}>
-              Volver al Menú
-            </button>
-            <button className="button-game" onClick={reset}>
-              Reiniciar
-            </button>
-          </section>
+          <ButtonsGame backMenu={backMenu} reset={reset} />
 
           {winner && (
             <WinnerModal
