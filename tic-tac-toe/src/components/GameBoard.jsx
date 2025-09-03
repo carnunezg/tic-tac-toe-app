@@ -1,3 +1,5 @@
+import TurnsGame from "./TurnsGame";
+
 const GameBoard = ({
   boards,
   turn,
@@ -12,23 +14,13 @@ const GameBoard = ({
       <h1 className="game-title">
         Tic <span className="game-tac">Tac</span> Toe
       </h1>
-      <div className="game-turns">
-        <p
-          className={`player ${turn === turns.X ? "turn-x" : ""} ${
-            winner === "X" ? "winner" : ""
-          }`}
-        >
-          {playerX || "X"}
-        </p>
-
-        <p
-          className={`player ${turn === turns.O ? "turn-o" : ""} ${
-            winner === "O" ? "winner" : ""
-          }`}
-        >
-          {playerO || "O"}
-        </p>
-      </div>
+      <TurnsGame
+        winner={winner}
+        turn={turn}
+        turns={turns}
+        playerX={playerX}
+        playerO={playerO}
+      />
 
       <div className="boards">
         {boards.map((_, i) => (
