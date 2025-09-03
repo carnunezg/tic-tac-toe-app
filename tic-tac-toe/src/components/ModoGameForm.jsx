@@ -3,7 +3,7 @@ const ModoGameForm = ({
   playerX,
   playerO,
   startGame,
-  back,
+  backMenu,
   setPlayerX,
   setPlayerO,
 }) => {
@@ -39,7 +39,7 @@ const ModoGameForm = ({
           <button className="button-start" onClick={startGame}>
             Jugar
           </button>
-          <button onClick={back} className="button-back">
+          <button onClick={backMenu} className="button-back">
             Volver
           </button>
         </section>

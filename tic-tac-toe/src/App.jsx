@@ -12,13 +12,28 @@ import ButtonsGame from "./components/ButtonsGame";
 
 const App = () => {
   const [showModal, setShowModal] = useState("menu");
-  const [ModoGame, setModoGame] = useState(null);
+  const [ModoGame, setModoGame] = useState("");
   const [playerX, setPlayerX] = useState("");
   const [playerO, setPlayerO] = useState("");
   const [boards, setBoards] = useState(Array(9).fill(""));
   const [turn, setTurn] = useState(turns.X);
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState("");
   const [result, setResult] = useState(results);
+
+  const checkWinner = (newBoards) => {
+    for (let combo of winningCombinations) {
+      const [a, b, c] = combo;
+      if (
+        newBoards[a] &&
+        newBoards[a] === newBoards[b] &&
+        newBoards[a] === newBoards[c]
+      ) {
+        return newBoards[a];
+      }
+    }
+
+    return null;
+  };
 
   const click = (i) => {
     if (boards[i] !== "" || winner) return;
@@ -52,7 +67,7 @@ const App = () => {
         const winCheck = checkWinner(newBoards);
         if (!winCheck && newBoards.some((c) => c === ""))
           computerMove({
-            updatedBoards: newBoards,
+            newBoards,
             setBoards,
             setWinner,
             setTurn,
@@ -64,31 +79,15 @@ const App = () => {
     }
   };
 
-  const checkWinner = (boards) => {
-    for (let combo of winningCombinations) {
-      const [a, b, c] = combo;
-      if (boards[a] && boards[a] === boards[b] && boards[a] === boards[c]) {
-        return boards[a];
-      }
-    }
-    return null;
-  };
-
   const startGame = () => {
     if (ModoGame === "computer" && !playerO) setPlayerO("Pc");
     setShowModal("game");
   };
 
-  const back = () => {
-    setShowModal("menu");
-    setPlayerX("");
-    setPlayerO("");
-  };
-
   const reset = () => {
     setBoards(Array(9).fill(""));
     setTurn(turns.X);
-    setWinner(null);
+    setWinner("");
   };
 
   const backMenu = () => {
@@ -116,7 +115,7 @@ const App = () => {
           setPlayerX={setPlayerX}
           setPlayerO={setPlayerO}
           startGame={startGame}
-          back={back}
+          backMenu={backMenu}
         />
       )}
 
