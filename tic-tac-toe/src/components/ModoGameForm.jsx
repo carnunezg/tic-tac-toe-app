@@ -1,5 +1,5 @@
 const ModoGameForm = ({
-  ModoGame,
+  modoGame,
   playerX,
   playerO,
   startGame,
@@ -11,7 +11,7 @@ const ModoGameForm = ({
     <section className="modal">
       <div className="card">
         <h2 className="form-title">
-          {ModoGame === "computer"
+          {modoGame === "computer"
             ? "Ingresa tu nombre"
             : "Ingresa los nombres"}
         </h2>
@@ -24,7 +24,7 @@ const ModoGameForm = ({
             value={playerX}
             onChange={(e) => setPlayerX(e.target.value)}
           />
-          {ModoGame === "2players" && (
+          {modoGame === "2players" && (
             <input
               className="input"
               type="text"

@@ -1,10 +1,10 @@
-const WinnerModal = ({ winner, turns, ModoGame, playerX, playerO, reset }) => {
+const WinnerModal = ({ winner, turns, modoGame, playerX, playerO, reset }) => {
   return (
     <section className="modal">
       <div className="card-winner">
         {winner === "Empate" ? (
           <h2 className="card-winner-h2">¡Es un Empate!</h2>
-        ) : winner === turns.O && ModoGame === "computer" ? (
+        ) : winner === turns.O && modoGame === "computer" ? (
           <h2 className="card-winner-h2">
             ¡Perdiste!
             <br />

@@ -432,6 +432,10 @@
   }
 }
 
+.link {
+  text-decoration: none;
+}
+
 /* Tablets y pantallas medianas */
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .main-title {

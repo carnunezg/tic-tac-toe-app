@@ -8,6 +8,7 @@ export const computerMove = ({
   winner,
   checkWinner,
   setResult,
+  result,
 }) => {
   if (winner) return;
   // Busca ganar
@@ -15,7 +16,7 @@ export const computerMove = ({
     const [a, b, c] = combo;
     const values = [newBoards[a], newBoards[b], newBoards[c]];
     if (
-      values.filter((v) => v === turns.O).length === 2 &&
+      values.filter((v) => v === turns.O).length === 2 && //['O', 'O','']
       values.includes("")
     ) {
       const index = combo[values.indexOf("")];
@@ -26,16 +27,16 @@ export const computerMove = ({
       const win = checkWinner(boardCopy);
       if (win) {
         setWinner(win);
-        setResult((prevResult) => ({
-          ...prevResult,
-          [win]: prevResult[win] + 1,
-        }));
+        setResult({
+          ...result,
+          [win]: result[win] + 1,
+        });
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
-        setResult((prevResult) => ({
-          ...prevResult,
-          Empate: prevResult.Empate + 1,
-        }));
+        setResult({
+          ...result,
+          Empate: result.Empate + 1,
+        });
       } else {
         setTurn(turns.X);
       }
@@ -61,10 +62,10 @@ export const computerMove = ({
         setWinner(win);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
-        setResult((prevResult) => ({
-          ...prevResult,
-          Empate: prevResult.Empate + 1,
-        }));
+        setResult({
+          ...result,
+          Empate: result.Empate + 1,
+        });
       } else {
         setTurn(turns.X);
       }
@@ -74,8 +75,8 @@ export const computerMove = ({
 
   const currentBoards = [...newBoards];
   const selectCells = currentBoards
-    .map((val, i) => (val === "" ? i : null))
-    .filter((val) => val !== null);
+    .map((val, i) => (val === "" ? i : null)) // [null,1,2,null,4,null,6,null,null]
+    .filter((val) => val !== null); // [1,2,4,6]
 
   if (selectCells.length > 0) {
     const randomCell =
@@ -89,10 +90,10 @@ export const computerMove = ({
       setWinner(win);
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
-      setResult((prevResult) => ({
-        ...prevResult,
-        Empate: prevResult.Empate + 1,
-      }));
+      setResult({
+        ...result,
+        Empate: result.Empate + 1,
+      });
     } else {
       setTurn(turns.X);
     }

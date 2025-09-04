@@ -1,9 +1,12 @@
+import { Link } from "react-router";
+
 const ButtonsGame = ({ backMenu, reset }) => {
   return (
     <section className="buttons-game">
-      <button className="button-game " onClick={backMenu}>
-        Volver al Menú
-      </button>
+      <Link to="/">
+        <button className="button-game ">Volver al Menú</button>
+      </Link>
+
       <button className="button-game" onClick={reset}>
         Reiniciar
       </button>

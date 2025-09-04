@@ -1,4 +1,4 @@
-const TurnsGame = ({ winner, turn, turns, playerX, playerO }) => {
+const TurnsGame = ({ winner, turn, turns, playerX, playerO, modoGame }) => {
   return (
     <div className="game-turns">
       <p
@@ -14,7 +14,7 @@ const TurnsGame = ({ winner, turn, turns, playerX, playerO }) => {
           winner === "O" ? "winner" : ""
         }`}
       >
-        {playerO || "O"}
+        {modoGame === "computer" ? "PC" : playerO || "O"}
       </p>
     </div>
   );
