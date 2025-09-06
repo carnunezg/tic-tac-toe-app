@@ -9,6 +9,7 @@ export const computerMove = ({
   checkWinner,
   setResult,
   result,
+  setShowModal,
 }) => {
   if (winner) return;
   // Busca ganar
@@ -31,12 +32,36 @@ export const computerMove = ({
           ...result,
           [win]: result[win] + 1,
         });
+
+        localStorage.setItem(
+          "lastResult",
+          JSON.stringify({
+            ...result,
+            [win]: result[win] + 1,
+          })
+        );
+
+        setTimeout(() => {
+          setShowModal(true);
+        }, 1000);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
           ...result,
           Empate: result.Empate + 1,
         });
+
+        localStorage.setItem(
+          "lastResult",
+          JSON.stringify({
+            ...result,
+            Empate: result.Empate + 1,
+          })
+        );
+
+        setTimeout(() => {
+          setShowModal(true);
+        }, 1000);
       } else {
         setTurn(turns.X);
       }
@@ -60,12 +85,27 @@ export const computerMove = ({
       const win = checkWinner(boardCopy);
       if (win) {
         setWinner(win);
+        setTimeout(() => {
+          setShowModal(true);
+        }, 1000);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
           ...result,
           Empate: result.Empate + 1,
         });
+
+        localStorage.setItem(
+          "lastResult",
+          JSON.stringify({
+            ...result,
+            Empate: result.Empate + 1,
+          })
+        );
+
+        setTimeout(() => {
+          setShowModal(true);
+        }, 1000);
       } else {
         setTurn(turns.X);
       }
@@ -88,12 +128,27 @@ export const computerMove = ({
     const win = checkWinner(currentBoards);
     if (win) {
       setWinner(win);
+      setTimeout(() => {
+        setShowModal(true);
+      }, 1000);
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
         ...result,
         Empate: result.Empate + 1,
       });
+
+      localStorage.setItem(
+        "lastResult",
+        JSON.stringify({
+          ...result,
+          Empate: result.Empate + 1,
+        })
+      );
+
+      setTimeout(() => {
+        setShowModal(true);
+      }, 1000);
     } else {
       setTurn(turns.X);
     }

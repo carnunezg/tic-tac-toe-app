@@ -8,6 +8,7 @@ const GameBoard = ({
   winner,
   playerO,
   click,
+  result,
 }) => {
   return (
     <div>
@@ -20,6 +21,7 @@ const GameBoard = ({
         turns={turns}
         playerX={playerX}
         playerO={playerO}
+        result={result}
       />
 
       <div className="boards">

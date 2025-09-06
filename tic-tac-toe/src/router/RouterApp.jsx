@@ -3,6 +3,7 @@ import MenuPage from "../pages/MenuPage";
 import GameBoardPage from "../pages/GameBoardPage";
 import NotFound from "../pages/NotFound";
 import ModoGamePage from "../pages/ModoGamePage";
+import ResultsPage from "../pages/ResultsPage";
 
 const RouterApp = () => {
   return (
@@ -10,6 +11,7 @@ const RouterApp = () => {
       <Route path="/" element={<MenuPage />} />
       <Route path="/:modoGame" element={<ModoGamePage />} />
       <Route path="/:modoGame/game" element={<GameBoardPage />} />
+      <Route path="/:modoGame/game/results" element={<ResultsPage />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

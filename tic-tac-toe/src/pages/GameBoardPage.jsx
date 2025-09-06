@@ -15,20 +15,24 @@ const GameBoardPage = () => {
   const [boards, setBoards] = useState(Array(9).fill(""));
   const [turn, setTurn] = useState(turns.X);
   const [winner, setWinner] = useState("");
-  const [result, setResult] = useState(results);
+  const [showModal, setShowModal] = useState(false);
+
+  const initialResults =
+    JSON.parse(localStorage.getItem("lastResult")) || results;
+  const [result, setResult] = useState(initialResults);
 
   const location = useLocation();
   const { playerX, playerO } = location.state || {};
 
-  const checkWinner = (newBoards) => {
+  const checkWinner = (checkBoard) => {
     for (let combo of winningCombinations) {
       const [a, b, c] = combo;
       if (
-        newBoards[a] &&
-        newBoards[a] === newBoards[b] &&
-        newBoards[a] === newBoards[c]
+        checkBoard[a] &&
+        checkBoard[a] === checkBoard[b] &&
+        checkBoard[a] === checkBoard[c]
       ) {
-        return newBoards[a];
+        return checkBoard[a];
       }
     }
     return null;
@@ -48,17 +52,43 @@ const GameBoardPage = () => {
 
     if (win) {
       setWinner(win);
-      launchConfetti();
       setResult({
         ...result,
         [win]: result[win] + 1,
       });
+
+      localStorage.setItem(
+        "lastResult",
+        JSON.stringify({
+          ...result,
+          [win]: result[win] + 1,
+        })
+      );
+
+      // Mostrar el modal después de 1 segundo
+      setTimeout(() => {
+        launchConfetti();
+        setShowModal(true);
+      }, 1000);
     } else if (newBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
         ...result,
         Empate: result.Empate + 1,
       });
+
+      localStorage.setItem(
+        "lastResult",
+        JSON.stringify({
+          ...result,
+          Empate: result.Empate + 1,
+        })
+      );
+
+      // Mostrar el modal después de 1 segundo
+      setTimeout(() => {
+        setShowModal(true);
+      }, 1000);
     }
 
     if (modoGame === "computer" && nextTurn === turns.O) {
@@ -74,6 +104,7 @@ const GameBoardPage = () => {
             checkWinner,
             setResult,
             result,
+            setShowModal,
           });
       }, 500);
     }
@@ -83,7 +114,16 @@ const GameBoardPage = () => {
     setBoards(Array(9).fill(""));
     setTurn(turns.X);
     setWinner("");
+    setShowModal(false);
   };
+
+  // const backHome = () => {
+  //   setBoards(Array(9).fill(""));
+  //   setTurn(turns.X);
+  //   setWinner("");
+  //   setShowModal(false);
+  //   setResult(results);
+  // };
 
   return (
     <main className="main-card">
@@ -96,11 +136,12 @@ const GameBoardPage = () => {
           playerO={playerO}
           winner={winner}
           click={click}
+          result={result}
         />
         <ScoreBoard result={result} />
 
         <ButtonsGame reset={reset} />
-        {winner && (
+        {showModal && (
           <WinnerModal
             winner={winner}
             turns={turns}

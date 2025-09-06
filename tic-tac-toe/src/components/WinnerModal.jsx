@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const WinnerModal = ({ winner, turns, modoGame, playerX, playerO, reset }) => {
   return (
     <section className="modal">
@@ -21,9 +23,12 @@ const WinnerModal = ({ winner, turns, modoGame, playerX, playerO, reset }) => {
           </h2>
         )}
 
-        <section className="buttons-game">
-          <button className="button-game" onClick={reset}>
-            Reiniciar
+        <section className="buttons-modal">
+          <Link to={`/${modoGame}/game/results`} state={{ playerX, playerO }}>
+            <button className="button-modal">Resultados</button>
+          </Link>
+          <button className="button-modal" onClick={reset}>
+            Seguir Jugando
           </button>
         </section>
       </div>

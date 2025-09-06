@@ -36,11 +36,11 @@ const ModoGameForm = ({
           )}
         </form>
         <section className="button-form">
-          <button className="button-start" onClick={startGame}>
-            Jugar
-          </button>
           <button onClick={backMenu} className="button-back">
             Volver
+          </button>
+          <button className="button-start" onClick={startGame}>
+            Jugar
           </button>
         </section>
       </div>
