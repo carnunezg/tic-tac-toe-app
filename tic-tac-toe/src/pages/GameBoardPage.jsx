@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import "../css/App.css";
 import { launchConfetti } from "../utils/launchConfetti";
 import { computerMove } from "../utils/computerMove";
@@ -21,8 +20,9 @@ const GameBoardPage = () => {
     JSON.parse(localStorage.getItem("lastResult")) || results;
   const [result, setResult] = useState(initialResults);
 
-  const location = useLocation();
-  const { playerX, playerO } = location.state || {};
+  const [searchParams] = useSearchParams();
+  const playerX = searchParams.get("playerX") || "X";
+  const playerO = searchParams.get("playerO") || "O";
 
   const checkWinner = (checkBoard) => {
     for (let combo of winningCombinations) {
@@ -65,7 +65,6 @@ const GameBoardPage = () => {
         })
       );
 
-      // Mostrar el modal después de 1 segundo
       setTimeout(() => {
         launchConfetti();
         setShowModal(true);
@@ -85,7 +84,6 @@ const GameBoardPage = () => {
         })
       );
 
-      // Mostrar el modal después de 1 segundo
       setTimeout(() => {
         setShowModal(true);
       }, 1000);
@@ -116,14 +114,6 @@ const GameBoardPage = () => {
     setWinner("");
     setShowModal(false);
   };
-
-  // const backHome = () => {
-  //   setBoards(Array(9).fill(""));
-  //   setTurn(turns.X);
-  //   setWinner("");
-  //   setShowModal(false);
-  //   setResult(results);
-  // };
 
   return (
     <main className="main-card">

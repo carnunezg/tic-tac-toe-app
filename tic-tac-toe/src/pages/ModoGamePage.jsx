@@ -15,12 +15,11 @@ const ModoGamePage = () => {
   const navigate = useNavigate();
 
   const startGame = () => {
-    navigate(`/${modoGame}/game`, {
-      state: {
-        playerX,
-        playerO: modoGame === "computer" ? "PC" : playerO,
-      },
-    });
+    const playerOComputer = modoGame === "computer" ? "PC" : playerO;
+    const url = `/${modoGame}/game?playerX=${encodeURIComponent(
+      playerX
+    )}&playerO=${encodeURIComponent(playerOComputer)}`;
+    navigate(url);
   };
 
   const backMenu = () => {

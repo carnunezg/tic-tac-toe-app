@@ -1,17 +1,14 @@
-import { Link, useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { turns } from "../utils/consts";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { turns, results } from "../utils/consts";
 
-const ResultsPage = ({ reset }) => {
-  const location = useLocation();
+const ResultsPage = () => {
   const { modoGame } = useParams();
-  const { playerX, playerO } = location.state || {};
+  const [searchParams] = useSearchParams();
+  const playerX = searchParams.get("playerX") || turns.X;
+  const playerO = searchParams.get("playerO") || turns.O;
 
-  const storedResults = JSON.parse(localStorage.getItem("lastResult")) || {
-    X: 0,
-    O: 0,
-    Empate: 0,
-  };
+  const storedResults =
+    JSON.parse(localStorage.getItem("lastResult")) || results;
 
   return (
     <div className="modal-results">
@@ -56,18 +53,26 @@ const ResultsPage = ({ reset }) => {
               Volver al Menú
             </button>
           </Link>
-          <Link to={`/${modoGame}/game`} state={{ playerX, playerO }}>
+          <Link
+            to={`/${modoGame}/game?playerX=${encodeURIComponent(
+              playerX
+            )}&playerO=${encodeURIComponent(playerO)}`}
+          >
             <button
               className="button-results"
               onClick={() => {
                 localStorage.removeItem("lastResult");
-                reset;
               }}
             >
               Reiniciar Juego
             </button>
           </Link>
-          <Link to={`/${modoGame}/game`} state={{ playerX, playerO }}>
+
+          <Link
+            to={`/${modoGame}/game?playerX=${encodeURIComponent(
+              playerX
+            )}&playerO=${encodeURIComponent(playerO)}`}
+          >
             <button className="button-results">Seguir Jugando</button>
           </Link>
         </section>
