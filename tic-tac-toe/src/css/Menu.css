@@ -1,0 +1,119 @@
+.main-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.background-animated {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../img/fondo-card-3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  animation: moveBackground 30s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.modal-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  color: #fff;
+  text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
+  margin: 0;
+  padding: 20px;
+}
+.button-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  padding: 12px 24px;
+  font-size: 20px;
+  background: #217dbb;
+  color: #111111;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 300px;
+  height: 60px;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background: #111111;
+  border-color: #3498db;
+  color: #3498db;
+}
+
+/* Teléfonos pequeños */
+@media screen and (max-width: 480px) {
+  .main-title {
+    padding: 10px;
+    font-size: 40px;
+  }
+
+  .button-main {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .button {
+    width: 230px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+/* Tablets y pantallas medianas */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .main-title {
+    padding: 10px;
+  }
+
+  .button-main {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

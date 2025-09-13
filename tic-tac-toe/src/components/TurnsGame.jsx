@@ -26,7 +26,7 @@ const TurnsGame = ({
             winner === "O" ? "winner" : ""
           }`}
         >
-          {modoGame === "computer" ? "PC" : playerO || "O"}
+          {modoGame === "computer" ? playerO || "PC" : playerO || "O"}
         </h1>
         <p className="turn-o">{result.O}</p>
       </div>

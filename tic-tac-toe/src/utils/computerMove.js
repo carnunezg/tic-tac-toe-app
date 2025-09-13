@@ -33,14 +33,6 @@ export const computerMove = ({
           [win]: result[win] + 1,
         });
 
-        localStorage.setItem(
-          "lastResult",
-          JSON.stringify({
-            ...result,
-            [win]: result[win] + 1,
-          })
-        );
-
         setTimeout(() => {
           setShowModal(true);
         }, 1000);
@@ -50,14 +42,6 @@ export const computerMove = ({
           ...result,
           Empate: result.Empate + 1,
         });
-
-        localStorage.setItem(
-          "lastResult",
-          JSON.stringify({
-            ...result,
-            Empate: result.Empate + 1,
-          })
-        );
 
         setTimeout(() => {
           setShowModal(true);
@@ -95,14 +79,6 @@ export const computerMove = ({
           Empate: result.Empate + 1,
         });
 
-        localStorage.setItem(
-          "lastResult",
-          JSON.stringify({
-            ...result,
-            Empate: result.Empate + 1,
-          })
-        );
-
         setTimeout(() => {
           setShowModal(true);
         }, 1000);
@@ -137,14 +113,6 @@ export const computerMove = ({
         ...result,
         Empate: result.Empate + 1,
       });
-
-      localStorage.setItem(
-        "lastResult",
-        JSON.stringify({
-          ...result,
-          Empate: result.Empate + 1,
-        })
-      );
 
       setTimeout(() => {
         setShowModal(true);

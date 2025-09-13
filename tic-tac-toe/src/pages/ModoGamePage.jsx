@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ModoGameForm from "../components/ModoGameForm";
 import NotFound from "./NotFound";
+import { PlayerContext } from "../context/PlayerContext";
 
 const ModoGamePage = () => {
-  const [playerX, setPlayerX] = useState("");
-  const [playerO, setPlayerO] = useState("");
+  const { playerX, playerO, setPlayerX, setPlayerO } =
+    useContext(PlayerContext);
 
   const { modoGame } = useParams();
   const validModo = ["2players", "computer"];
@@ -15,15 +16,19 @@ const ModoGamePage = () => {
   const navigate = useNavigate();
 
   const startGame = () => {
-    const playerOComputer = modoGame === "computer" ? "PC" : playerO;
-    const url = `/${modoGame}/game?playerX=${encodeURIComponent(
-      playerX
-    )}&playerO=${encodeURIComponent(playerOComputer)}`;
-    navigate(url);
+    const finalPlayerX = playerX || "X";
+    const finalPlayerO = modoGame === "computer" ? "Pc" : playerO || "O";
+
+    setPlayerX(finalPlayerX);
+    setPlayerO(finalPlayerO);
+
+    navigate(`/${modoGame}/game`);
   };
 
   const backMenu = () => {
     navigate("/");
+    setPlayerX("");
+    setPlayerO("");
   };
 
   return (

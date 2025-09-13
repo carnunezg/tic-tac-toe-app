@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../css/App.css";
 import { launchConfetti } from "../utils/launchConfetti";
 import { computerMove } from "../utils/computerMove";
@@ -8,21 +8,18 @@ import GameBoard from "../components/GameBoard";
 import WinnerModal from "../components/WinnerModal";
 import ScoreBoard from "../components/ScoreBoard";
 import ButtonsGame from "../components/ButtonsGame";
+import { PlayerContext } from "../context/PlayerContext";
+import { ResultsContext } from "../context/ResultsContext";
 
 const GameBoardPage = () => {
+  const { playerX, playerO, setPlayerX, setPlayerO } =
+    useContext(PlayerContext);
+  const { result, setResult } = useContext(ResultsContext);
   const { modoGame } = useParams();
   const [boards, setBoards] = useState(Array(9).fill(""));
   const [turn, setTurn] = useState(turns.X);
   const [winner, setWinner] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  const initialResults =
-    JSON.parse(localStorage.getItem("lastResult")) || results;
-  const [result, setResult] = useState(initialResults);
-
-  const [searchParams] = useSearchParams();
-  const playerX = searchParams.get("playerX") || "X";
-  const playerO = searchParams.get("playerO") || "O";
 
   const checkWinner = (checkBoard) => {
     for (let combo of winningCombinations) {
@@ -57,14 +54,6 @@ const GameBoardPage = () => {
         [win]: result[win] + 1,
       });
 
-      localStorage.setItem(
-        "lastResult",
-        JSON.stringify({
-          ...result,
-          [win]: result[win] + 1,
-        })
-      );
-
       setTimeout(() => {
         launchConfetti();
         setShowModal(true);
@@ -75,14 +64,6 @@ const GameBoardPage = () => {
         ...result,
         Empate: result.Empate + 1,
       });
-
-      localStorage.setItem(
-        "lastResult",
-        JSON.stringify({
-          ...result,
-          Empate: result.Empate + 1,
-        })
-      );
 
       setTimeout(() => {
         setShowModal(true);
@@ -108,7 +89,17 @@ const GameBoardPage = () => {
     }
   };
 
-  const reset = () => {
+  const resetGameResults = () => {
+    setBoards(Array(9).fill(""));
+    setTurn(turns.X);
+    setWinner("");
+    setShowModal(false);
+    setPlayerX("");
+    setPlayerO("");
+    setResult(results);
+  };
+
+  const resetGame = () => {
     setBoards(Array(9).fill(""));
     setTurn(turns.X);
     setWinner("");
@@ -116,32 +107,37 @@ const GameBoardPage = () => {
   };
 
   return (
-    <main className="main-card">
-      <section className="game">
-        <GameBoard
-          boards={boards}
-          turn={turn}
-          turns={turns}
-          playerX={playerX}
-          playerO={playerO}
-          winner={winner}
-          click={click}
-          result={result}
-        />
-        <ScoreBoard result={result} />
-
-        <ButtonsGame reset={reset} />
-        {showModal && (
-          <WinnerModal
-            winner={winner}
+    <main className="background-animated">
+      <div className="modal">
+        <section className="game">
+          <GameBoard
+            boards={boards}
+            turn={turn}
             turns={turns}
-            modoGame={modoGame}
             playerX={playerX}
             playerO={playerO}
-            reset={reset}
+            winner={winner}
+            click={click}
+            result={result}
           />
-        )}
-      </section>
+          <ScoreBoard result={result} />
+
+          <ButtonsGame
+            resetGameResults={resetGameResults}
+            resetGame={resetGame}
+          />
+          {showModal && (
+            <WinnerModal
+              winner={winner}
+              turns={turns}
+              modoGame={modoGame}
+              playerX={playerX}
+              playerO={playerO}
+              resetGame={resetGame}
+            />
+          )}
+        </section>
+      </div>
     </main>
   );
 };
