@@ -10,6 +10,7 @@ export const computerMove = ({
   setResult,
   result,
   setShowModal,
+  setWinnerCombo,
 }) => {
   if (winner) return;
   // Busca ganar
@@ -27,15 +28,16 @@ export const computerMove = ({
 
       const win = checkWinner(boardCopy);
       if (win) {
-        setWinner(win);
+        setWinner(win.winner);
+        setWinnerCombo(win.combo);
         setResult({
           ...result,
-          [win]: result[win] + 1,
+          [win.winner]: result[win.winner] + 1,
         });
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1000);
+        }, 1500);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -45,7 +47,7 @@ export const computerMove = ({
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1000);
+        }, 1500);
       } else {
         setTurn(turns.X);
       }
@@ -68,10 +70,11 @@ export const computerMove = ({
 
       const win = checkWinner(boardCopy);
       if (win) {
-        setWinner(win);
+        setWinner(win.winner);
+        setWinnerCombo(win.combo);
         setTimeout(() => {
           setShowModal(true);
-        }, 1000);
+        }, 1500);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -81,7 +84,7 @@ export const computerMove = ({
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1000);
+        }, 1500);
       } else {
         setTurn(turns.X);
       }
@@ -103,10 +106,11 @@ export const computerMove = ({
 
     const win = checkWinner(currentBoards);
     if (win) {
-      setWinner(win);
+      setWinner(win.winner);
+      setWinnerCombo(win.combo);
       setTimeout(() => {
         setShowModal(true);
-      }, 1000);
+      }, 1500);
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -116,7 +120,7 @@ export const computerMove = ({
 
       setTimeout(() => {
         setShowModal(true);
-      }, 1000);
+      }, 1500);
     } else {
       setTurn(turns.X);
     }

@@ -86,6 +86,7 @@ const GameBoardPage = () => {
             setResult,
             result,
             setShowModal,
+            setWinnerCombo,
           });
       }, 500);
     }
