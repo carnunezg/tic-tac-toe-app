@@ -20,6 +20,7 @@ const GameBoardPage = () => {
   const [turn, setTurn] = useState(turns.X);
   const [winner, setWinner] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [winnerCombo, setWinnerCombo] = useState([]);
 
   const checkWinner = (checkBoard) => {
     for (let combo of winningCombinations) {
@@ -29,7 +30,7 @@ const GameBoardPage = () => {
         checkBoard[a] === checkBoard[b] &&
         checkBoard[a] === checkBoard[c]
       ) {
-        return checkBoard[a];
+        return { winner: checkBoard[a], combo };
       }
     }
     return null;
@@ -48,16 +49,17 @@ const GameBoardPage = () => {
     const win = checkWinner(newBoards);
 
     if (win) {
-      setWinner(win);
+      setWinner(win.winner);
+      setWinnerCombo(win.combo);
       setResult({
         ...result,
-        [win]: result[win] + 1,
+        [win.winner]: result[win.winner] + 1,
       });
 
       setTimeout(() => {
         launchConfetti();
         setShowModal(true);
-      }, 1000);
+      }, 1500);
     } else if (newBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -67,7 +69,7 @@ const GameBoardPage = () => {
 
       setTimeout(() => {
         setShowModal(true);
-      }, 1000);
+      }, 1500);
     }
 
     if (modoGame === "computer" && nextTurn === turns.O) {
@@ -97,6 +99,7 @@ const GameBoardPage = () => {
     setPlayerX("");
     setPlayerO("");
     setResult(results);
+    setWinnerCombo([]);
   };
 
   const resetGame = () => {
@@ -104,6 +107,7 @@ const GameBoardPage = () => {
     setTurn(turns.X);
     setWinner("");
     setShowModal(false);
+    setWinnerCombo([]);
   };
 
   return (
@@ -119,6 +123,7 @@ const GameBoardPage = () => {
             winner={winner}
             click={click}
             result={result}
+            winnerCombo={winnerCombo}
           />
           <ScoreBoard result={result} />
 

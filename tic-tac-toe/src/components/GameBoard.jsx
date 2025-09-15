@@ -9,6 +9,7 @@ const GameBoard = ({
   playerO,
   click,
   result,
+  winnerCombo,
 }) => {
   return (
     <div>
@@ -26,7 +27,11 @@ const GameBoard = ({
 
       <div className="boards">
         {boards.map((_, i) => (
-          <button key={i} className="cell" onClick={() => click(i)}>
+          <button
+            key={i}
+            className={`cell ${winnerCombo.includes(i) ? "cell-winner" : ""}`}
+            onClick={() => click(i)}
+          >
             <h1 className={boards[i] === turns.X ? "x" : "o"}>{boards[i]}</h1>
           </button>
         ))}
