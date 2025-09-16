@@ -18,7 +18,7 @@ export const computerMove = ({
     const [a, b, c] = combo;
     const values = [newBoards[a], newBoards[b], newBoards[c]];
     if (
-      values.filter((v) => v === turns.O).length === 2 && //['O', 'O','']
+      values.filter((v) => v === turns.O).length === 2 &&
       values.includes("")
     ) {
       const index = combo[values.indexOf("")];
@@ -94,8 +94,8 @@ export const computerMove = ({
 
   const currentBoards = [...newBoards];
   const selectCells = currentBoards
-    .map((val, i) => (val === "" ? i : null)) // [null,1,2,null,4,null,6,null,null]
-    .filter((val) => val !== null); // [1,2,4,6]
+    .map((val, i) => (val === "" ? i : null))
+    .filter((val) => val !== null);
 
   if (selectCells.length > 0) {
     const randomCell =
