@@ -1,6 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { results } from "../utils/consts";
-import { PlayerContext } from "./PlayerContext";
 
 export const ResultsContext = createContext();
 
