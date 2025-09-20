@@ -37,7 +37,7 @@ export const computerMove = ({
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1500);
+        }, 1600);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -47,7 +47,7 @@ export const computerMove = ({
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1500);
+        }, 1600);
       } else {
         setTurn(turns.X);
       }
@@ -74,7 +74,7 @@ export const computerMove = ({
         setWinnerCombo(win.combo);
         setTimeout(() => {
           setShowModal(true);
-        }, 1500);
+        }, 1600);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -84,7 +84,7 @@ export const computerMove = ({
 
         setTimeout(() => {
           setShowModal(true);
-        }, 1500);
+        }, 1600);
       } else {
         setTurn(turns.X);
       }
@@ -110,7 +110,7 @@ export const computerMove = ({
       setWinnerCombo(win.combo);
       setTimeout(() => {
         setShowModal(true);
-      }, 1500);
+      }, 1600);
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -120,7 +120,7 @@ export const computerMove = ({
 
       setTimeout(() => {
         setShowModal(true);
-      }, 1500);
+      }, 1600);
     } else {
       setTurn(turns.X);
     }

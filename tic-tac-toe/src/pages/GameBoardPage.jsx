@@ -59,7 +59,7 @@ const GameBoardPage = () => {
       setTimeout(() => {
         launchConfetti();
         setShowModal(true);
-      }, 1500);
+      }, 1600);
     } else if (newBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -69,7 +69,7 @@ const GameBoardPage = () => {
 
       setTimeout(() => {
         setShowModal(true);
-      }, 1500);
+      }, 1600);
     }
 
     if (modoGame === "computer" && nextTurn === turns.O) {
@@ -88,7 +88,7 @@ const GameBoardPage = () => {
             setShowModal,
             setWinnerCombo,
           });
-      }, 500);
+      }, 700);
     }
   };
 
