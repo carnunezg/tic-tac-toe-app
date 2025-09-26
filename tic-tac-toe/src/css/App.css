@@ -79,13 +79,12 @@
   height: 300px;
 }
 .card-winner {
-  background: rgba(26, 26, 26, 0.8);
+  /* background: rgba(26, 26, 26, 0.8);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 30px 40px;
   border-radius: 12px;
-  text-align: center;
   color: white;
   border: 2px solid #3498db;
   box-shadow: 0 0 25px #3498db;
@@ -94,13 +93,22 @@
   align-items: center;
   justify-content: center;
   width: 450px;
-  height: 180px;
+  height: 180px; */
+  text-align: center;
 }
 
 .card-winner-h2 {
   font-size: 30px;
   color: #fff;
   text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
+  margin: 0;
+}
+
+.card-winner-h2-empate {
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
+  margin: 12px;
 }
 
 .form-title {
@@ -252,7 +260,7 @@
 }
 
 .player {
-  font-size: 25px;
+  font-size: 30px;
   color: #fff;
   margin: 0px;
 }
@@ -293,14 +301,14 @@
 
 .button-menu {
   padding: 12px 24px;
-  font-size: 17px;
+  font-size: 15px;
   background: #1a1a1a;
   color: #217dbb;
   border: 2px solid #217dbb;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 170px;
+  width: 130px;
 }
 .button-menu:hover {
   background: #252525;
@@ -310,14 +318,14 @@
 
 .button-reset {
   padding: 12px 24px;
-  font-size: 17px;
+  font-size: 15px;
   background: #1a1a1a;
   color: #e74c3c;
   border: 2px solid #e74c3c;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 170px;
+  width: 130px;
 }
 .button-reset:hover {
   background: #252525;
@@ -506,6 +514,24 @@
   margin: 0;
 }
 
+.button-results {
+  font-size: 15px;
+  background: #1a1a1a;
+  color: #f4f2f2;
+  border: 2px solid #f4f2f2;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 12px 24px;
+  width: 130px;
+}
+
+.button-results:hover {
+  background: #252525;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
 /* page resultados */
 
 .modal-results {
@@ -590,12 +616,10 @@
     gap: 20px;
   }
 
-  .card,
-  .card-winner {
-    width: 100%;
-    max-width: 260px;
+  .card {
+    width: 70%;
     height: auto;
-    padding: 15px;
+    padding: 25px;
   }
 
   .card-winner-h2,
@@ -620,12 +644,15 @@
   .title-x,
   .title-o,
   .title-empate {
-    font-size: 19px;
+    font-size: 20px;
   }
   .turn-x,
-  .turn-o,
+  .turn-o {
+    font-size: 20px;
+  }
+
   .player {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .score-board {
@@ -655,6 +682,21 @@
   .buttons-results a:nth-child(3) {
     grid-column: 1 / span 2;
     justify-self: center;
+  }
+
+  .buttons-game {
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .button-menu,
+  .button-results,
+  .button-reset {
+    width: 105px;
+    height: 40px;
+    font-size: 11px;
   }
 
   .button-results-menu,
@@ -688,6 +730,14 @@
     padding: 10px;
   }
 
+  .button-menu,
+  .button-results,
+  .button-reset {
+    width: 130px;
+    height: 45px;
+    font-size: 14px;
+  }
+
   .button-main {
     flex-direction: column;
     gap: 20px;
@@ -698,8 +748,7 @@
     width: 150px;
   }
 
-  .card,
-  .card-winner {
+  .card {
     width: 60%;
     height: auto;
     padding: 25px;
@@ -717,7 +766,7 @@
 
 /* Pantallas grandes (laptops y monitores) */
 @media screen and (min-width: 769px) {
-  .card {
+  /* .card {
     width: 500px;
     height: 300px;
   }
@@ -725,7 +774,7 @@
   .card-winner {
     width: 350px;
     height: 150px;
-  }
+  } */
 }
 
 @media screen and (max-width: 480px) {

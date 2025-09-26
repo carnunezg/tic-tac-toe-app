@@ -1,17 +1,31 @@
 import { Link } from "react-router";
 
-const ButtonsGame = ({ resetGameResults, resetGame }) => {
+const ButtonsGame = ({
+  resetGameResults,
+  resetGame,
+  hasClicked,
+  hasVictories,
+  modoGame,
+}) => {
   return (
     <section className="buttons-game">
       <Link to="/">
         <button className="button-menu" onClick={resetGameResults}>
-          Volver al Menú
+          Menú
         </button>
       </Link>
 
-      <button className="button-reset" onClick={resetGame}>
-        Reiniciar
-      </button>
+      {hasVictories && (
+        <Link to={`/${modoGame}/game/results`}>
+          <button className="button-results">Resultados</button>
+        </Link>
+      )}
+
+      {hasClicked && (
+        <button className="button-reset" onClick={resetGame}>
+          Reiniciar
+        </button>
+      )}
     </section>
   );
 };

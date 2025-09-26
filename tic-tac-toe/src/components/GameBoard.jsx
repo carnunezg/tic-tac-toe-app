@@ -10,6 +10,8 @@ const GameBoard = ({
   click,
   result,
   winnerCombo,
+  showWinnerBanner,
+  modoGame,
 }) => {
   return (
     <div>
@@ -23,6 +25,8 @@ const GameBoard = ({
         playerX={playerX}
         playerO={playerO}
         result={result}
+        showWinnerBanner={showWinnerBanner}
+        modoGame={modoGame}
       />
 
       <div className="boards">

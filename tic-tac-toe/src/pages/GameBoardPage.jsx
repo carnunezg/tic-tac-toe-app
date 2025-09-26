@@ -5,7 +5,6 @@ import { launchConfetti } from "../utils/launchConfetti";
 import { computerMove } from "../utils/computerMove";
 import { turns, winningCombinations, results } from "../utils/consts";
 import GameBoard from "../components/GameBoard";
-import WinnerModal from "../components/WinnerModal";
 import ScoreBoard from "../components/ScoreBoard";
 import ButtonsGame from "../components/ButtonsGame";
 import { PlayerContext } from "../context/PlayerContext";
@@ -16,11 +15,13 @@ const GameBoardPage = () => {
     useContext(PlayerContext);
   const { result, setResult } = useContext(ResultsContext);
   const { modoGame } = useParams();
+
   const [boards, setBoards] = useState(Array(9).fill(""));
   const [turn, setTurn] = useState(turns.X);
   const [winner, setWinner] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showWinnerBanner, setShowWinnerBanner] = useState(false);
   const [winnerCombo, setWinnerCombo] = useState([]);
+  const [hasClicked, setHasClicked] = useState(false);
 
   const checkWinner = (checkBoard) => {
     for (let combo of winningCombinations) {
@@ -39,6 +40,8 @@ const GameBoardPage = () => {
   const click = (i) => {
     if (boards[i] !== "" || winner) return;
 
+    if (!hasClicked) setHasClicked(true);
+
     const newBoards = [...boards];
     newBoards[i] = turn;
     setBoards(newBoards);
@@ -55,11 +58,12 @@ const GameBoardPage = () => {
         ...result,
         [win.winner]: result[win.winner] + 1,
       });
-
+      launchConfetti();
+      setShowWinnerBanner(true);
       setTimeout(() => {
-        launchConfetti();
-        setShowModal(true);
-      }, 1500);
+        setShowWinnerBanner(false);
+        resetGame();
+      }, 4000);
     } else if (newBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -67,9 +71,12 @@ const GameBoardPage = () => {
         Empate: result.Empate + 1,
       });
 
+      setShowWinnerBanner(true);
+
       setTimeout(() => {
-        setShowModal(true);
-      }, 1500);
+        setShowWinnerBanner(false);
+        resetGame();
+      }, 4000);
     }
 
     if (modoGame === "computer" && nextTurn === turns.O) {
@@ -85,7 +92,8 @@ const GameBoardPage = () => {
             checkWinner,
             setResult,
             result,
-            setShowModal,
+            setShowWinnerBanner,
+            resetGame,
             setWinnerCombo,
           });
       }, 500);
@@ -96,7 +104,6 @@ const GameBoardPage = () => {
     setBoards(Array(9).fill(""));
     setTurn(turns.X);
     setWinner("");
-    setShowModal(false);
     setPlayerX("");
     setPlayerO("");
     setResult(results);
@@ -107,10 +114,11 @@ const GameBoardPage = () => {
     setBoards(Array(9).fill(""));
     setTurn(turns.X);
     setWinner("");
-    setShowModal(false);
     setWinnerCombo([]);
+    setHasClicked(false);
   };
 
+  const hasVictories = result.X > 0 || result.O > 0;
   return (
     <main className="background-animated">
       <div className="modal">
@@ -125,23 +133,18 @@ const GameBoardPage = () => {
             click={click}
             result={result}
             winnerCombo={winnerCombo}
+            showWinnerBanner={showWinnerBanner}
+            modoGame={modoGame}
           />
           <ScoreBoard result={result} />
 
           <ButtonsGame
             resetGameResults={resetGameResults}
             resetGame={resetGame}
+            hasClicked={hasClicked}
+            hasVictories={hasVictories}
+            modoGame={modoGame}
           />
-          {showModal && (
-            <WinnerModal
-              winner={winner}
-              turns={turns}
-              modoGame={modoGame}
-              playerX={playerX}
-              playerO={playerO}
-              resetGame={resetGame}
-            />
-          )}
         </section>
       </div>
     </main>

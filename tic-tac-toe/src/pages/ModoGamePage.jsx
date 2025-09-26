@@ -17,7 +17,7 @@ const ModoGamePage = () => {
 
   const startGame = () => {
     const finalPlayerX = playerX || "X";
-    const finalPlayerO = modoGame === "computer" ? "Pc" : playerO || "O";
+    const finalPlayerO = modoGame === "computer" ? "PC" : playerO || "O";
 
     setPlayerX(finalPlayerX);
     setPlayerO(finalPlayerO);
