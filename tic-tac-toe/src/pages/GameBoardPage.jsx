@@ -118,7 +118,7 @@ const GameBoardPage = () => {
     setHasClicked(false);
   };
 
-  const hasVictories = result.X > 0 || result.O > 0;
+  const hasVictories = result.X > 0 || result.O > 0 || result.Empate > 0;
   return (
     <main className="background-animated">
       <div className="modal">
