@@ -38,10 +38,10 @@ export const computerMove = ({
 
         setShowWinnerBanner(true);
 
-        setTimeout(() => {
-          setShowWinnerBanner(false);
-          resetGame();
-        }, 4000);
+        // setTimeout(() => {
+        //   setShowWinnerBanner(false);
+        //   resetGame();
+        // }, 4000);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -51,10 +51,10 @@ export const computerMove = ({
 
         setShowWinnerBanner(true);
 
-        setTimeout(() => {
-          setShowWinnerBanner(false);
-          resetGame();
-        }, 4000);
+        // setTimeout(() => {
+        //   setShowWinnerBanner(false);
+        //   resetGame();
+        // }, 4000);
       } else {
         setTurn(turns.X);
       }
@@ -81,10 +81,10 @@ export const computerMove = ({
         setWinnerCombo(win.combo);
         setShowWinnerBanner(true);
 
-        setTimeout(() => {
-          setShowWinnerBanner(false);
-          resetGame();
-        }, 4000);
+        // setTimeout(() => {
+        //   setShowWinnerBanner(false);
+        //   resetGame();
+        // }, 4000);
       } else if (boardCopy.every((c) => c !== "")) {
         setWinner("Empate");
         setResult({
@@ -94,10 +94,10 @@ export const computerMove = ({
 
         setShowWinnerBanner(true);
 
-        setTimeout(() => {
-          setShowWinnerBanner(false);
-          resetGame();
-        }, 4000);
+        // setTimeout(() => {
+        //   setShowWinnerBanner(false);
+        //   resetGame();
+        // }, 4000);
       } else {
         setTurn(turns.X);
       }
@@ -123,10 +123,10 @@ export const computerMove = ({
       setWinnerCombo(win.combo);
       setShowWinnerBanner(true);
 
-      setTimeout(() => {
-        setShowWinnerBanner(false);
-        resetGame();
-      }, 4000);
+      // setTimeout(() => {
+      //   setShowWinnerBanner(false);
+      //   resetGame();
+      // }, 4000);
     } else if (currentBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -136,10 +136,10 @@ export const computerMove = ({
 
       setShowWinnerBanner(true);
 
-      setTimeout(() => {
-        setShowWinnerBanner(false);
-        resetGame();
-      }, 4000);
+      // setTimeout(() => {
+      //   setShowWinnerBanner(false);
+      //   resetGame();
+      // }, 4000);
     } else {
       setTurn(turns.X);
     }

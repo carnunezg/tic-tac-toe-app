@@ -60,10 +60,10 @@ const GameBoardPage = () => {
       });
       launchConfetti();
       setShowWinnerBanner(true);
-      setTimeout(() => {
-        setShowWinnerBanner(false);
-        resetGame();
-      }, 4000);
+      // setTimeout(() => {
+      //   setShowWinnerBanner(false);
+      //   resetGame();
+      // }, 4000);
     } else if (newBoards.every((c) => c !== "")) {
       setWinner("Empate");
       setResult({
@@ -73,10 +73,10 @@ const GameBoardPage = () => {
 
       setShowWinnerBanner(true);
 
-      setTimeout(() => {
-        setShowWinnerBanner(false);
-        resetGame();
-      }, 4000);
+      // setTimeout(() => {
+      //   setShowWinnerBanner(false);
+      //   resetGame();
+      // }, 4000);
     }
 
     if (modoGame === "computer" && nextTurn === turns.O) {
@@ -116,6 +116,7 @@ const GameBoardPage = () => {
     setWinner("");
     setWinnerCombo([]);
     setHasClicked(false);
+    setShowWinnerBanner(false);
   };
 
   const hasVictories = result.X > 0 || result.O > 0 || result.Empate > 0;
